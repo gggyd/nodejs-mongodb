@@ -24,7 +24,7 @@ module.exports = function(app) {
   app.use(cookieParser('some-secret-value-here'));
   routes(app);
   app.use('/public/', express.static(path.join(__dirname, '../public')));
-
+  app.use('/node_modules/', express.static(path.join(__dirname, '../node_modules')));
   if ('development' === app.get('env')) {
     app.use(errorHandler);
   }
