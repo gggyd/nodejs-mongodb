@@ -10,6 +10,9 @@ var path = require('path'),
 
 module.exports = function(app) {
   app.use(morgan('dev'));
+  // app.use(bodyParser({
+  //   uploadDir: path.join(__dirname, 'public/upload/temp')
+  // }));
   app.use(bodyParser.urlencoded({
     'extended': true
   }));
