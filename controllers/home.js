@@ -7,7 +7,9 @@ module.exports = {
       images: [ ]
     };
 
-    ImageModel.find({}, {}, { sort: {timestamp: -1 }}, function(err, images) {
+    ImageModel.find({}, {}, { 
+      sort: { timestamp: -1 }
+    }, function(err, images) {
       if (err) { throw err; }
 
       viewModel.images = images;
