@@ -6,7 +6,8 @@ var express = require('express'),
 app.set('port', process.env.PORT || 3500);
 app.set('views', __dirname + '/views');
 app = config(app);
-mongoose.connect('mongodb://localhost/imgPloadr');
+// mongoose.connect('mongodb://localhost/imgPloadr');
+mongoose.connect('mongodb://gggyd:gggyd.123@ds021884.mlab.com:21884/imgploadr');
 mongoose.connection.on('open', function() {
   console.log('Mongoose connected');
 });
