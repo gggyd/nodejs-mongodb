@@ -1,8 +1,10 @@
-var fs = require('fs'),
-    path = require('path'),
+var fs      = require('fs'),
+    path    = require('path'),
     sidebar = require('../helpers/sidebar'),
-    Models = require('../models'),
-    md5 = require('MD5');
+    Models  = require('../models'),
+    md5     = require('MD5'),
+    request = require('request'),
+    config  = require('../appConfig');
 
 module.exports = {
   index: function(req, res) {
@@ -141,6 +143,17 @@ module.exports = {
           });
         });
       });
+    });
+  },
+  queryByApi: function(req, res) {
+    request({
+      method: 'GET',
+      uri: 'http://localhost:3500' + config.base.api + '/images'
+    }, function(err, response, body) {
+      if (err) { throw err; }
+
+      var images = [];
+      res.json(JSON.parse(body));
     });
   }
 };

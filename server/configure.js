@@ -1,5 +1,6 @@
 var path = require('path'),
     routes = require('./routes'),
+    apiRoutes = require('./apiRoutes'),
     exphbs = require('express-handlebars'),
     express = require('express'),
     bodyParser = require('body-parser'),
@@ -22,7 +23,10 @@ module.exports = function(app) {
   app.use(bodyParser.json());
   app.use(methodOverride());
   app.use(cookieParser('some-secret-value-here'));
+
   routes(app);
+  apiRoutes(app);
+
   app.use('/public/', express.static(path.join(__dirname, '../public')));
   app.use('/node_modules/', express.static(path.join(__dirname, '../node_modules')));
   if ('development' === app.get('env')) {
