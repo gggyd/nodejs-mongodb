@@ -9,7 +9,17 @@ var path = require('path'),
     methodOverride = require('method-override'),
     errorHandler = require('errorhandler'),
     multer = require('multer'),
+    cors = require('cors'),
     moment = require('moment');
+
+// CORS middleware
+var allowCrossDomain = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+
+    next();
+}
 
 module.exports = function(app) {
   app.use(morgan('dev'));
@@ -23,6 +33,7 @@ module.exports = function(app) {
   app.use(bodyParser.json());
   app.use(methodOverride());
   app.use(cookieParser('some-secret-value-here'));
+  app.use(allowCrossDomain);
 
   routes(app);
   apiRoutes(app);
